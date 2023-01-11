@@ -33,8 +33,10 @@ app.post("/", (req, res) => {
     hours: 10,
     minutes: 10,
   };
+  console.log("employee", employee);
   //   let currentDate = "2023-01-11T08:54:39.414Z";
   const todayDate = new Date(currentDate);
+  console.log("todayDate", todayDate);
   const empDate = new Date(
     todayDate.getFullYear(),
     todayDate.getMonth(),
@@ -42,6 +44,7 @@ app.post("/", (req, res) => {
     employee.hours,
     employee.minutes
   );
+  console.log("empDate", empDate);
   const late = todayDate > empDate;
   let lateDetails;
   let earlyDetails;
