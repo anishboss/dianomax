@@ -5,8 +5,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.post("/", (req, res) => {
-  console.log("hello anish");
   const { currentDate } = req.body;
+
   const calculateTimeDifference = (date1, date2) => {
     // console.log("dates", date1, date2);
     if (!date1 || !date2) {
@@ -33,7 +33,18 @@ app.post("/", (req, res) => {
     hours: 10,
     minutes: 10,
   };
-  console.log("employee", employee);
+  const serverDate = new Date();
+  let employeeDbDate = "2023-01-11T04:25:19.285Z";
+  let empDateLocal = new Date(employeeDbDate);
+  let empDate1 = new Date(
+    serverDate.getFullYear(),
+    serverDate.getMonth(),
+    serverDate.getDate(),
+    empDateLocal.getHours(),
+    empDateLocal.getMinutes()
+  );
+  console.log("empDate1", empDate1);
+  //   console.log("employee", employee);
   //   let currentDate = "2023-01-11T08:54:39.414Z";
   const todayDate = new Date(currentDate);
   console.log("todayDate", todayDate);
@@ -45,7 +56,7 @@ app.post("/", (req, res) => {
     employee.minutes
   );
   console.log("empDate", empDate);
-  const late = todayDate > empDate;
+  const late = todayDate > empDate1;
   let lateDetails;
   let earlyDetails;
   if (late) {
@@ -59,7 +70,7 @@ app.post("/", (req, res) => {
   }
 
   // console.log(late);
-  const serverDate = new Date();
+
   const date = new Date(
     serverDate.getFullYear(),
     serverDate.getMonth(),
@@ -70,7 +81,7 @@ app.post("/", (req, res) => {
     success: true,
     date: date,
     todayDate,
-    empDate,
+    empDate1,
     lateDetails,
     earlyDetails,
     localDetails: {
