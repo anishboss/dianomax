@@ -1,7 +1,7 @@
 const express = require("express");
-
 const app = express();
-
+require("dotenv").config();
+const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.post("/", (req, res) => {
@@ -70,6 +70,6 @@ app.post("/", (req, res) => {
     },
   });
 });
-app.listen(3000, () => {
-  console.log("listeing in 3000");
+app.listen(PORT, () => {
+  console.log(`listeing in ${PORT}`);
 });
