@@ -56,7 +56,13 @@ app.post("/", (req, res) => {
   }
 
   // console.log(late);
-  const date = new Date();
+  const serverDate = new Date();
+  const date = new Date(
+    serverDate.getFullYear(),
+    serverDate.getMonth(),
+    serverDate.getDate()
+  );
+  console.log("server Date", date);
   res.status(200).json({
     success: true,
     date: date,
@@ -67,6 +73,7 @@ app.post("/", (req, res) => {
     localDetails: {
       date: date.toLocaleString(),
       todayDate: todayDate.toLocaleString(),
+      empDate: empDate.toLocaleString(),
     },
   });
 });
