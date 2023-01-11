@@ -60,11 +60,11 @@ app.post("/", (req, res) => {
   let lateDetails;
   let earlyDetails;
   if (late) {
-    lateDetails = calculateTimeDifference(empDate, todayDate);
+    lateDetails = calculateTimeDifference(empDate1, todayDate);
     console.log("late", lateDetails);
     lateDetails["isLate"] = true;
   } else {
-    earlyDetails = calculateTimeDifference(todayDate, empDate);
+    earlyDetails = calculateTimeDifference(todayDate, empDate1);
     console.log("early", earlyDetails);
     earlyDetails["isLate"] = false;
   }
